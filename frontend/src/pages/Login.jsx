@@ -41,7 +41,7 @@ const Login = () => {
     try {
       setLoading(true);
       const res = await axios.post(
-        "http://localhost:8000/user/login",
+        `${import.meta.env.VITE_URL}/user/login`,
         formData,
       );
       if (res.data.success) {
@@ -49,7 +49,7 @@ const Login = () => {
         dispatch(setUser(res.data.user));
         localStorage.setItem("accessToken", res.data.accessToken);
 
-        const cartRes = await axios.get("http://localhost:8000/cart", {
+        const cartRes = await axios.get(`${import.meta.env.VITE_URL}/cart`, {
           headers: {
             Authorization: `Bearer ${res.data.accessToken}`,
           },

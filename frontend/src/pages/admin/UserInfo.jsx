@@ -31,7 +31,7 @@ const UserInfo = () => {
   const getUserDetails = async () => {
     try {
       let res = await axios.get(
-        `http://localhost:8000/user/get-user/${userId}`,
+        `${import.meta.env.VITE_URL}/user/get-user/${userId}`,
         {
           headers: {
             Authorization: `Bearer ${accessToken}`,

@@ -17,7 +17,7 @@ const ProductCard = ({ product, loading,user }) => {
   const addToCart = async (productId) => {
     try {
       const res = await axios.post(
-        "http://localhost:8000/cart/add",
+        `${import.meta.env.VITE_URL}/cart/add`,
         { productId },
         {
           headers: {

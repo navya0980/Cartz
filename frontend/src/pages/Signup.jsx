@@ -38,7 +38,7 @@ const Signup = () => {
     e.preventDefault();
     try {
       setLoading(true);
-      const res=await axios.post("http://localhost:8000/user/register",formData);
+      const res=await axios.post(`${import.meta.env.VITE_URL}/user/register`,formData);
       if(res.data.success){
         navigate('/verify');
         toast.success(res.data.message);

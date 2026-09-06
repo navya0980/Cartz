@@ -23,7 +23,7 @@ const Navbar = () => {
   const logoutHandler = async () => {
     try {
       const res = await axios.post(
-        "http://localhost:8000/user/logout",
+        `${import.meta.env.VITE_URL}/user/logout`,
         {},
         {
           headers: {
@@ -169,11 +169,17 @@ const Navbar = () => {
             </Link>
 
             {user ? (
-              <Button className="bg-primary-600 text-white hover:bg-primary-500 transition-colors cursor-pointer">
+              <Button className="bg-primary-600 text-white hover:bg-primary-500 transition-colors cursor-pointer"
+              onClick={() => {
+                navigate("/logout");
+              }}
+              >
                 Logout
               </Button>
             ) : (
-              <Button className="bg-primary-600 text-white hover:bg-primary-500 transition-colors cursor-pointer">
+              <Button className="bg-primary-600 text-white hover:bg-primary-500 transition-colors cursor-pointer" onClick={() => {
+                navigate("/login");
+              }}>
                 Login
               </Button>
             )}

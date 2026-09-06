@@ -107,7 +107,7 @@ const AdminProduct = () => {
 
     try {
       const res = await axios.put(
-        `http://localhost:8000/product/update/${editProduct._id}`,
+        `${import.meta.env.VITE_URL}/product/update/${editProduct._id}`,
         formData,
         {
           headers: {

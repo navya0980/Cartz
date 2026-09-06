@@ -21,7 +21,7 @@ const Cart = () => {
   const dispatch=useDispatch();
 
   const accessToken=localStorage.getItem("accessToken");
-  let API="http://localhost:8000/cart";
+  let API=`${import.meta.env.VITE_URL}/cart`;
 
   const loadCart=async()=>{
     try {
