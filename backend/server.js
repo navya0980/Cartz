@@ -1,0 +1,44 @@
+import express from "express";
+import  "dotenv/config";
+import dns from "dns";
+import cors from 'cors';
+import path from 'path';
+import { fileURLToPath } from 'url';
+dns.setDefaultResultOrder("ipv4first");
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+const app=express();
+import connectDB from "./database/db.js";
+import userRoute from "./routes/userRoute.js"
+import productRoute from "./routes/productRoute.js"
+import cartRoute from "./routes/cartRoute.js"
+import orderRoute from "./routes/orderRoute.js"
+const PORT=process.env.PORT||3000;
+
+app.use(cors({
+  origin: 'http://localhost:5173',
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  credentials: true // if using cookies/auth
+}));
+
+app.use(express.json());
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+app.listen(PORT,()=>{
+    connectDB();
+    console.log(`Server listening at port ${PORT}`);
+})
+
+app.use("/user",userRoute);
+app.use("/product",productRoute);
+app.use("/cart",cartRoute);
+app.use("/orders",orderRoute);
+
+app.use((err, req, res, next) => {
+  console.error(err.message);
+  res.status(err.statusCode || 500).json({
+    success: err.success === false ? false : true,
+    message: err.message || "Internal Server Error"
+  });
+});

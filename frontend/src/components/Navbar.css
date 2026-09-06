@@ -1,0 +1,32 @@
+.nav-link {
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  border-radius: 1px;
+  margin-top:1px;
+  background-color: #ffffff;
+  width: 0%;
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+  animation: heartbeat116 1.5s ease-in-out 0.3s infinite;
+}
+
+@keyframes heartbeat116 {
+  0%, 100% {
+    width: 100%;
+  }
+  50% {
+    width: 60%;
+  }
+}

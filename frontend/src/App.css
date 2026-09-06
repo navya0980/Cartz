@@ -1,0 +1,18 @@
+
+.sign-btn{
+    background-color:#ff4d6d;
+    height:2.5rem;
+}
+
+.sign-btn:hover{
+    opacity:0.9;
+}
+
+.s-card{
+    box-shadow :1px 1px 1rem rgba(0,0,0,0.5);
+}
+
+.login-text{
+    color:#c9184a;
+}
+
