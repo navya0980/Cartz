@@ -25,10 +25,10 @@ app.use(cors({
 
 app.use(express.json());
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
-app.listen(PORT,()=>{
-    connectDB();
-    console.log(`Server listening at port ${PORT}`);
-})
+app.listen(PORT, "0.0.0.0", () => {
+  connectDB();
+  console.log(`Server listening at port ${PORT}`);
+});
 
 app.use("/user",userRoute);
 app.use("/product",productRoute);
