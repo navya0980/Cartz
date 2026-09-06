@@ -18,7 +18,7 @@ import orderRoute from "./routes/orderRoute.js"
 const PORT=process.env.PORT||3000;
 
 app.use(cors({
-  origin: 'http://localhost:5173',
+  origin: 'process.env.FRONTEND_URL',
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   credentials: true // if using cookies/auth
 }));
