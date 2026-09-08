@@ -187,7 +187,7 @@ const AdminProduct = () => {
               {/* Product Image + Name */}
               <div className="flex items-center gap-4 flex-1 min-w-[220px]">
                 <img
-                  src={product.productImg[0]?.url|| }
+                  src={product.productImg[0]?.url }
                   className="w-24 h-24 sm:w-32 sm:h-32 object-cover rounded-md shrink-0"
                   alt={product.productName}
                 />
