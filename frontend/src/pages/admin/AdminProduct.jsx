@@ -137,7 +137,7 @@ const AdminProduct = () => {
       );
 
       const res = await axios.delete(
-        `http://localhost:8000/product/delete/${productId}`,
+        `${import.meta.env.VITE_URL}/product/delete/${productId}`,
         {
           headers: {
             Authorization: `Bearer ${accessToken}`,
@@ -216,15 +216,132 @@ const AdminProduct = () => {
                     />
                   </DialogTrigger>
 
-                  {/* Your DialogContent remains the same */}
+          
+                  <DialogContent className="sm:max-w-[600px] max-h-[90vh] overflow-y-auto">
+                    <DialogHeader>
+                      <DialogTitle>Edit Product</DialogTitle>
+                      <DialogDescription>
+                        Update your product details here.
+                      </DialogDescription>
+                    </DialogHeader>
+
+                    {editProduct && (
+                      <form onSubmit={handleSave} className="space-y-5">
+                        {/* Product Name */}
+                        <div className="space-y-2">
+                          <Label htmlFor="productName">Product Name</Label>
+
+                          <Input
+                            id="productName"
+                            name="productName"
+                            value={editProduct.productName}
+                            onChange={handleChange}
+                          />
+                        </div>
+
+                        {/* Product Description */}
+                        <div className="space-y-2">
+                          <Label htmlFor="productDesc">
+                            Product Description
+                          </Label>
+
+                          <Textarea
+                            id="productDesc"
+                            name="productDesc"
+                            value={editProduct.productDesc}
+                            onChange={handleChange}
+                          />
+                        </div>
+
+                        {/* Product Price */}
+                        <div className="space-y-2">
+                          <Label htmlFor="productPrice">Product Price</Label>
+
+                          <Input
+                            id="productPrice"
+                            name="productPrice"
+                            type="number"
+                            value={editProduct.productPrice}
+                            onChange={handleChange}
+                          />
+                        </div>
+
+                        {/* Category */}
+                        <div className="space-y-2">
+                          <Label htmlFor="category">Category</Label>
+
+                          <Input
+                            id="category"
+                            name="category"
+                            value={editProduct.category}
+                            onChange={handleChange}
+                          />
+                        </div>
+
+                        {/* Brand */}
+                        <div className="space-y-2">
+                          <Label htmlFor="brand">Brand</Label>
+
+                          <Input
+                            id="brand"
+                            name="brand"
+                            value={editProduct.brand}
+                            onChange={handleChange}
+                          />
+                        </div>
+
+                        {/* Product Images */}
+                        <div className="space-y-2">
+                          <Label>Product Images</Label>
+
+                          <ImageUpload
+                            productData={editProduct}
+                            setProductData={setEditProduct}
+                          />
+                        </div>
+
+                        <DialogFooter>
+                          <DialogClose asChild>
+                            <Button type="button" variant="outline">
+                              Cancel
+                            </Button>
+                          </DialogClose>
+
+                          <Button type="submit" className="bg-primary-600 hover:bg-primary-800 cursor-pointer">Update Changes</Button>
+                        </DialogFooter>
+                      </form>
+                    )}
+                  </DialogContent>
                 </Dialog>
 
                 <AlertDialog>
-                  <AlertDialogTrigger>
+                  <AlertDialogTrigger asChild>
                     <Trash className="text-red-500 cursor-pointer" />
                   </AlertDialogTrigger>
 
-                  {/* Your AlertDialogContent remains the same */}
+                  <AlertDialogContent>
+                    <AlertDialogHeader>
+                      <AlertDialogTitle>
+                        Are you absolutely sure?
+                      </AlertDialogTitle>
+
+                      <AlertDialogDescription>
+                        This action cannot be undone. This will permanently
+                        delete the product from your database.
+                      </AlertDialogDescription>
+                    </AlertDialogHeader>
+
+                    <AlertDialogFooter>
+                      <AlertDialogCancel>Cancel</AlertDialogCancel>
+
+                      <AlertDialogAction
+                        onClick={() => deleteProductHandler(product._id)}
+                        className="bg-primary-600 hover:bg-primary-800 cursor-pointer"
+                      >
+                        Continue
+                      </AlertDialogAction>
+                    </AlertDialogFooter>
+                  </AlertDialogContent>
                 </AlertDialog>
               </div>
             </div>

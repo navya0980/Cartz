@@ -17,18 +17,17 @@ import cartRoute from "./routes/cartRoute.js"
 import orderRoute from "./routes/orderRoute.js"
 const PORT=process.env.PORT||3000;
 
-app.use(cors({
-  origin: 'http://localhost:5173',
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  credentials: true // if using cookies/auth
-}));
-
+app.use(
+  cors({
+    origin: process.env.FRONTEND_URL,
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+);
 app.use(express.json());
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
-app.listen(PORT,()=>{
-    connectDB();
-    console.log(`Server listening at port ${PORT}`);
-})
+
 
 app.use("/user",userRoute);
 app.use("/product",productRoute);
@@ -41,4 +40,9 @@ app.use((err, req, res, next) => {
     success: err.success === false ? false : true,
     message: err.message || "Internal Server Error"
   });
+});
+
+app.listen(PORT, "0.0.0.0", () => {
+  connectDB();
+  console.log(`Server listening at port ${PORT}`);
 });

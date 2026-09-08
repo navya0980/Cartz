@@ -6,6 +6,7 @@ import { Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
+import { toast } from "sonner";
 
 
 const AdminUsers = () => {
@@ -32,7 +33,8 @@ const AdminUsers = () => {
           },
         }
       );
-
+      console.log(res.data);
+      
       if (res.data.success) {
         setUsers(res.data.users);
       }
