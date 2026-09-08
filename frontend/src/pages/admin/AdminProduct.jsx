@@ -42,6 +42,7 @@ import { toast } from "sonner";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
+
 const AdminProduct = () => {
   const { products } = useSelector((store) => store.product);
   const [editProduct, setEditProduct] = useState(null);
@@ -186,7 +187,7 @@ const AdminProduct = () => {
               {/* Product Image + Name */}
               <div className="flex items-center gap-4 flex-1 min-w-[220px]">
                 <img
-                  src={product.productImg[0].url}
+                  src={product.productImg[0]?.url|| }
                   className="w-24 h-24 sm:w-32 sm:h-32 object-cover rounded-md shrink-0"
                   alt={product.productName}
                 />
@@ -291,15 +292,13 @@ const AdminProduct = () => {
                         </div>
 
                         {/* Product Images */}
-                        <div className="space-y-2">
-                          <Label>Product Images</Label>
+                       
 
                           <ImageUpload
                             productData={editProduct}
                             setProductData={setEditProduct}
                           />
-                        </div>
-
+                        
                         <DialogFooter>
                           <DialogClose asChild>
                             <Button type="button" variant="outline">
