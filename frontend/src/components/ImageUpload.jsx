@@ -43,6 +43,7 @@ const ImageUpload = ({ productData, setProductData }) => {
         variant="outline"
         onClick={() => document.getElementById("file-upload").click()}
         className="cursor-pointer"
+        type="button"
       >
         Upload Images
       </Button>
